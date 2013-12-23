@@ -21,14 +21,18 @@ oneshot os (
 
 delay_ctrl dc (
     .clk (main_clk),
-    .ctrl_key (key_os[1:0]),
-    .delay (delay)
+    .faster (key_os[1]),
+    .slower (key_os[0]),
+    .delay (delay),
+    .reset (key_os[3])
 );
 
 blinker b (
     .clk (main_clk),
     .delay (delay),
-    .led (LED)
+    .led (LED),
+    .reset (key_os[3]),
+    .pause (key_os[2])
 );
 
 endmodule
