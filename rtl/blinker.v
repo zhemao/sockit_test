@@ -5,11 +5,11 @@ module blinker (
 );
 
 input clk;
-input [2:0] delay;
+input [3:0] delay;
 
 output reg [3:0] led;
 
-reg [27:0] count;
+reg [25:0] count;
 reg [1:0] pos;
 reg up;
 
@@ -23,8 +23,8 @@ always @(pos) begin
 end
 
 always @(posedge clk) begin
-    if (count == 28'b0) begin
-        count <= {delay, 25'h1ffffff};
+    if (count == 26'b0) begin
+        count <= {delay, 22'b0};
         if (up) begin
             if (pos == 2'b11)
                 up <= 1'b0;

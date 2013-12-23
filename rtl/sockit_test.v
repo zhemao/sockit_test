@@ -10,7 +10,7 @@ input [3:0] KEY;
 output [3:0] LED;
 
 wire [3:0] key_os;
-wire [2:0] delay;
+wire [3:0] delay;
 wire main_clk = CLOCK_50;
 
 genvar i;
