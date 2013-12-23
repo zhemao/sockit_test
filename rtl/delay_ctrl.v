@@ -20,7 +20,7 @@ always @(posedge clk) begin
     if (reset)
         delay_intern <= 4'b1000;
     else if (faster && delay_intern != 4'b0001)
-        delay_intern <= delay_intern - 1'b1; 
+        delay_intern <= delay_intern - 1'b1;
     else if (slower && delay_intern != 4'b1111)
         delay_intern <= delay_intern + 1'b1;
 end
