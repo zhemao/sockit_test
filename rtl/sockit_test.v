@@ -13,16 +13,11 @@ wire [3:0] key_os;
 wire [3:0] delay;
 wire main_clk = CLOCK_50;
 
-genvar i;
-generate
-    for (i = 0; i < 4; i = i + 1) begin : OS
-        oneshot os (
-            .clk (main_clk),
-            .edge_sig (KEY[i]),
-            .level_sig (key_os[i])
-        );
-    end
-endgenerate
+oneshot os (
+    .clk (main_clk),
+    .edge_sig (KEY),
+    .level_sig (key_os)
+);
 
 delay_ctrl dc (
     .clk (main_clk),

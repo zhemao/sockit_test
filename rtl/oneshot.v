@@ -5,13 +5,13 @@ module oneshot (
 );
 
 input clk;
-input edge_sig;
-output level_sig;
+input [3:0] edge_sig;
+output [3:0] level_sig;
 
-reg cur_value;
-reg last_value;
+reg [3:0] cur_value;
+reg [3:0] last_value;
 
-assign level_sig = !cur_value && last_value;
+assign level_sig = ~cur_value & last_value;
 
 always @(posedge clk) begin
     cur_value <= edge_sig;
