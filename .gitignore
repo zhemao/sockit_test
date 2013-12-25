@@ -31,4 +31,11 @@
 obj
 *.swp
 *.a
-nios_workspace
+*.cmp
+*.sopcinfo
+/nios_workspace
+/.qsys_edit
+/hps_isw_handoff
+/hps_sdram_p0_all_pins.txt
+/hps_sdram_p0_summary.csv
+/qsys/synthesis
