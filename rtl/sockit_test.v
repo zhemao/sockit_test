@@ -1,13 +1,8 @@
 module sockit_test (
-    CLOCK_50,
-    KEY,
-    LED
+    input CLOCK_50,
+    input [3:0] KEY,
+    output [3:0] LED
 );
-
-input CLOCK_50;
-input [3:0] KEY;
-
-output [3:0] LED;
 
 wire [3:0] key_os;
 wire [3:0] delay;

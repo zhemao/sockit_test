@@ -1,16 +1,10 @@
 module delay_ctrl (
-    clk,
-    faster,
-    slower,
-    delay,
-    reset
+    input clk,
+    input faster,
+    input slower,
+    output [3:0] delay,
+    input reset
 );
-
-input clk;
-input faster;
-input slower;
-output [3:0] delay;
-input reset;
 
 reg [3:0] delay_intern = 4'b1000;
 
