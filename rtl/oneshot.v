@@ -1,12 +1,8 @@
 module oneshot (
-    clk,
-    edge_sig,
-    level_sig
+    input clk,
+    input [3:0] edge_sig,
+    output [3:0] level_sig
 );
-
-input clk;
-input [3:0] edge_sig;
-output [3:0] level_sig;
 
 reg [3:0] cur_value;
 reg [3:0] last_value;

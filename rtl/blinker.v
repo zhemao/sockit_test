@@ -1,18 +1,10 @@
 module blinker (
-    clk,
-    delay,
-    led,
-    reset,
-    pause
+    input clk,
+    input [3:0] delay,
+    output reg [3:0] led,
+    input reset,
+    input pause
 );
-
-input clk;
-input [3:0] delay;
-
-output reg [3:0] led;
-
-input reset;
-input pause;
 
 reg [23:0] count = 24'b0;
 reg [2:0] pos = 3'b000;

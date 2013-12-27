@@ -1,29 +1,17 @@
 module delay_ctrl (
-    clk,
-    reset,
+    input clk,
+    input reset,
 
-    faster,
-    slower,
-    delay,
+    input faster,
+    input slower,
+    output [3:0] delay,
 
-    read,
-    write,
-    chipselect,
-    writedata,
-    readdata
+    input read,
+    input write,
+    input chipselect,
+    input [7:0] writedata,
+    output [7:0] readdata
 );
-
-input clk;
-input faster;
-input slower;
-output [3:0] delay;
-input reset;
-
-input read;
-input write;
-input chipselect;
-input [7:0] writedata;
-output [7:0] readdata;
 
 reg [3:0] delay_intern = 4'b1000;
 
