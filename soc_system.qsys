@@ -536,7 +536,9 @@
   <parameter name="quartus_ini_hps_ip_enable_bsel_csel" value="false" />
   <parameter name="quartus_ini_hps_ip_f2sdram_bonding_out" value="false" />
  </module>
- <module kind="delay_ctrl" version="1.0" enabled="1" name="delay_ctrl_0" />
+ <module kind="delay_ctrl" version="1.0" enabled="1" name="delay_ctrl_0">
+  <parameter name="AUTO_CLOCK_CLOCK_RATE" value="50000000" />
+ </module>
  <connection
    kind="clock"
    version="13.1"
@@ -557,15 +559,6 @@
    version="13.1"
    start="clk_0.clk"
    end="delay_ctrl_0.clock" />
- <connection
-   kind="avalon"
-   version="13.1"
-   start="hps_0.h2f_axi_master"
-   end="delay_ctrl_0.avalon_slave_0">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
  <connection
    kind="avalon"
    version="13.1"
