@@ -396,8 +396,8 @@
   <parameter name="BSEL" value="1" />
   <parameter name="CSEL_EN" value="false" />
   <parameter name="CSEL" value="0" />
-  <parameter name="F2S_Width" value="2" />
-  <parameter name="S2F_Width" value="2" />
+  <parameter name="F2S_Width" value="0" />
+  <parameter name="S2F_Width" value="0" />
   <parameter name="LWH2F_Enable" value="true" />
   <parameter name="F2SDRAM_Type" value="" />
   <parameter name="F2SDRAM_Width" value="" />
@@ -480,8 +480,8 @@
   <parameter name="F2SCLK_PERIPHCLK_FREQ" value="100" />
   <parameter name="F2SCLK_SDRAMCLK_Enable" value="false" />
   <parameter name="F2SCLK_SDRAMCLK_FREQ" value="100" />
-  <parameter name="F2H_AXI_CLOCK_FREQ" value="50000000" />
-  <parameter name="H2F_AXI_CLOCK_FREQ" value="50000000" />
+  <parameter name="F2H_AXI_CLOCK_FREQ" value="100" />
+  <parameter name="H2F_AXI_CLOCK_FREQ" value="100" />
   <parameter name="H2F_LW_AXI_CLOCK_FREQ" value="50000000" />
   <parameter name="F2H_SDRAM0_CLOCK_FREQ" value="100" />
   <parameter name="F2H_SDRAM1_CLOCK_FREQ" value="100" />
@@ -543,17 +543,7 @@
    kind="clock"
    version="13.1"
    start="clk_0.clk"
-   end="hps_0.f2h_axi_clock" />
- <connection
-   kind="clock"
-   version="13.1"
-   start="clk_0.clk"
    end="hps_0.h2f_lw_axi_clock" />
- <connection
-   kind="clock"
-   version="13.1"
-   start="clk_0.clk"
-   end="hps_0.h2f_axi_clock" />
  <connection
    kind="clock"
    version="13.1"
