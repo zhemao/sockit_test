@@ -32,7 +32,7 @@
    {
       datum _sortIndex
       {
-         value = "1";
+         value = "2";
          type = "int";
       }
    }
@@ -40,7 +40,7 @@
    {
       datum _sortIndex
       {
-         value = "2";
+         value = "1";
          type = "int";
       }
    }
@@ -62,22 +62,19 @@
  <parameter name="timeStamp" value="0" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
+ <interface name="memory" internal="hps_0.memory" type="conduit" dir="end" />
+ <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
+ <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
  <interface
    name="delay_ctrl"
    internal="delay_ctrl_0.conduit_end"
    type="conduit"
    dir="end" />
- <interface name="memory" internal="hps_0.memory" type="conduit" dir="end" />
- <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
- <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
  <module kind="clock_source" version="13.1" enabled="1" name="clk_0">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
   <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="NONE" />
- </module>
- <module kind="delay_ctrl" version="1.0" enabled="1" name="delay_ctrl_0">
-  <parameter name="AUTO_CLOCK_CLOCK_RATE" value="50000000" />
  </module>
  <module kind="altera_hps" version="13.1" enabled="1" name="hps_0">
   <parameter name="MEM_VENDOR" value="JEDEC" />
@@ -539,34 +536,7 @@
   <parameter name="quartus_ini_hps_ip_enable_bsel_csel" value="false" />
   <parameter name="quartus_ini_hps_ip_f2sdram_bonding_out" value="false" />
  </module>
- <connection
-   kind="clock"
-   version="13.1"
-   start="clk_0.clk"
-   end="delay_ctrl_0.clock" />
- <connection
-   kind="reset"
-   version="13.1"
-   start="clk_0.clk_reset"
-   end="delay_ctrl_0.reset" />
- <connection
-   kind="avalon"
-   version="13.1"
-   start="hps_0.h2f_lw_axi_master"
-   end="delay_ctrl_0.avalon_slave_0">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
-   kind="avalon"
-   version="13.1"
-   start="hps_0.h2f_axi_master"
-   end="delay_ctrl_0.avalon_slave_0">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
+ <module kind="delay_ctrl" version="1.0" enabled="1" name="delay_ctrl_0" />
  <connection
    kind="clock"
    version="13.1"
@@ -582,6 +552,34 @@
    version="13.1"
    start="clk_0.clk"
    end="hps_0.h2f_axi_clock" />
+ <connection
+   kind="clock"
+   version="13.1"
+   start="clk_0.clk"
+   end="delay_ctrl_0.clock" />
+ <connection
+   kind="avalon"
+   version="13.1"
+   start="hps_0.h2f_axi_master"
+   end="delay_ctrl_0.avalon_slave_0">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="13.1"
+   start="hps_0.h2f_lw_axi_master"
+   end="delay_ctrl_0.avalon_slave_0">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="reset"
+   version="13.1"
+   start="clk_0.clk_reset"
+   end="delay_ctrl_0.reset" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.maxAdditionalLatency" value="1" />
  <interconnectRequirement for="$system" name="qsys_mm.insertDefaultSlave" value="false" />

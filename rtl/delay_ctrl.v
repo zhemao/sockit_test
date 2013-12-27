@@ -6,17 +6,14 @@ module delay_ctrl (
     input slower,
     output [3:0] delay,
 
-    input read,
     input write,
     input chipselect,
-    input [7:0] writedata,
-    output [7:0] readdata
+    input [7:0] writedata
 );
 
 reg [3:0] delay_intern = 4'b1000;
 
 assign delay = delay_intern;
-assign readdata = {4'b0000, delay_intern};
 
 always @(posedge clk) begin
     if (reset)
