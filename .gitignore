@@ -21,6 +21,7 @@
 /.sopc_builder
 /sopc_builder_log.txt
 /nios_system_log.txt
+
 *.html
 *.bsf
 *.ptf.*
@@ -34,8 +35,19 @@ obj
 *.cmp
 *.sopcinfo
 /nios_workspace
+
 /.qsys_edit
 /hps_isw_handoff
 /hps_sdram_p0_all_pins.txt
 /hps_sdram_p0_summary.csv
 /qsys/synthesis
+
+*.cmd
+*.mod.c
+*.o
+*.ko
+modules.order
+Module.symvers
+.tmp_versions
+
+/software/blinker_us/blinker
