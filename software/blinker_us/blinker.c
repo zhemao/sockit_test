@@ -26,6 +26,10 @@ int main(int argc, char *argv[])
 	}
 
 	value = atoi(argv[1]);
+	if (value < 1 || value > 15) {
+		fprintf(stderr, "Invalid delay setting."
+				"Delay must be between 1 and 15, inclusive.\n");
+	}
 
 	fd = open("/dev/mem", O_RDWR|O_SYNC);
 	if (fd < 0) {
