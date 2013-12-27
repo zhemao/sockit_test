@@ -60,7 +60,8 @@ soc_system soc (
     .memory_mem_dm       (hps_memory_mem_dm),
     .memory_oct_rzqin    (hps_memory_oct_rzqin),
 
-    .clk_clk (main_clk)
+    .clk_clk (main_clk),
+    .reset_reset_n (!key_os[3])
 );
 
 endmodule

@@ -69,6 +69,7 @@
    dir="end" />
  <interface name="memory" internal="hps_0.memory" type="conduit" dir="end" />
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
+ <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
  <module kind="clock_source" version="13.1" enabled="1" name="clk_0">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
@@ -548,11 +549,6 @@
    version="13.1"
    start="clk_0.clk_reset"
    end="delay_ctrl_0.reset" />
- <connection
-   kind="reset"
-   version="13.1"
-   start="hps_0.h2f_reset"
-   end="clk_0.clk_in_reset" />
  <connection
    kind="avalon"
    version="13.1"
