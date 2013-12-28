@@ -40,7 +40,7 @@ obj
 /hps_isw_handoff
 /hps_sdram_p0_all_pins.txt
 /hps_sdram_p0_summary.csv
-/qsys/synthesis
+/soc_system/synthesis
 
 *.cmd
 *.mod.c
