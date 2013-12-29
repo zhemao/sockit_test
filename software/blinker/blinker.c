@@ -58,7 +58,8 @@ static int __init blinker_init(void)
 	int ret;
 	struct resource *res;
 
-	if ((ret = driver_register(&blinker_driver)) < 0)
+	ret = driver_register(&blinker_driver);
+	if (ret < 0)
 		return ret;
 
 	ret = driver_create_file(&blinker_driver, &driver_attr_blinker);
