@@ -4,15 +4,13 @@ PWD=$(shell pwd)
 all: blinker_us blinker
 
 blinker:
-	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -C $(KERNEL_SRC_DIR) \
-		M=$(PWD)/blinker modules
+	make -C blinker
 
 blinker_us:
 	make -C blinker_us
 
 clean:
-	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -C $(KERNEL_SRC_DIR) \
-		M=$(PWD)/blinker clean
+	make -C blinker clean
 	make -C blinker_us clean
 
 install: all
