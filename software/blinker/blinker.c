@@ -25,16 +25,15 @@ ssize_t blinker_show(struct device_driver *drv, char *buf)
 ssize_t blinker_store(struct device_driver *drv, const char *buf, size_t count)
 {
 	u8 delay;
-	int ret;
 
 	if (buf == NULL) {
 		pr_err("Error, string must not be NULL\n");
 		return -EINVAL;
 	}
 
-	if ((ret = kstrtou8(buf, 10, &delay)) < 0) {
+	if (kstrtou8(buf, 10, &delay) < 0) {
 		pr_err("Could not convert string to integer\n");
-		return ret;
+		return -EINVAL;
 	}
 
 	if (delay < 1 || delay > 15) {
