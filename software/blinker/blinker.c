@@ -7,9 +7,7 @@
 #include <linux/ioport.h>
 #include <linux/io.h>
 
-#define LWHPS2FPGA_BASE 0xff200000
-#define BLINKER_OFFSET 0x0
-#define BLINKER_BASE (LWHPS2FPGA_BASE + BLINKER_OFFSET)
+#define BLINKER_BASE 0xff200000
 #define BLINKER_SIZE PAGE_SIZE
 
 void *blink_mem;
