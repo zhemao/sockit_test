@@ -25,6 +25,7 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
+	/* check the bounds of the value being set */
 	value = atoi(argv[1]);
 	if (value < 1 || value > 15) {
 		fprintf(stderr, "Invalid delay setting."
@@ -32,21 +33,25 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
+	/* open the memory device file */
 	fd = open("/dev/mem", O_RDWR|O_SYNC);
 	if (fd < 0) {
 		perror("open");
 		exit(EXIT_FAILURE);
 	}
 
-	bridge_map = mmap(NULL, PAGE_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED,
+	/* map the LWHPS2FPGA bridge into process memory */
+	bridge_map = mmap(NULL, PAGE_SIZE, PROT_WRITE, MAP_SHARED,
 				fd, blink_base);
 	if (bridge_map == MAP_FAILED) {
 		perror("mmap");
 		goto cleanup;
 	}
 
+	/* get the delay_ctrl peripheral's base address */
 	blink_mem = (unsigned char *) (bridge_map + BLINK_OFFSET);
 
+	/* write the value */
 	*blink_mem = value;
 
 	if (munmap(bridge_map, PAGE_SIZE) < 0) {
