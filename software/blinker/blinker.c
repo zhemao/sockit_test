@@ -10,6 +10,9 @@
 #define LWHPS2FPGA_BASE 0xff200000
 #define BLINKER_OFFSET 0x0
 #define BLINKER_BASE (LWHPS2FPGA_BASE + BLINKER_OFFSET)
+#define BLINKER_SIZE PAGE_SIZE
+
+void *blink_mem;
 
 static struct device_driver blinker_driver = {
 	.name = "blinker",
@@ -41,7 +44,7 @@ ssize_t blinker_store(struct device_driver *drv, const char *buf, size_t count)
 		return -EINVAL;
 	}
 
-	outb(delay, BLINKER_BASE);
+	iowrite8(delay, blink_mem);
 
 	return count;
 }
@@ -64,11 +67,19 @@ static int __init blinker_init(void)
 		return ret;
 	}
 
-	res = request_region(BLINKER_BASE, 1, "blinker");
+	res = request_mem_region(BLINKER_BASE, BLINKER_SIZE, "blinker");
 	if (res == NULL) {
 		driver_remove_file(&blinker_driver, &driver_attr_blinker);
 		driver_unregister(&blinker_driver);
 		return -EBUSY;
+	}
+
+	blink_mem = ioremap(BLINKER_BASE, BLINKER_SIZE);
+	if (blink_mem == NULL) {
+		driver_remove_file(&blinker_driver, &driver_attr_blinker);
+		driver_unregister(&blinker_driver);
+		release_mem_region(BLINKER_BASE, BLINKER_SIZE);
+		return -EFAULT;
 	}
 
 	return 0;
@@ -78,7 +89,8 @@ static void __exit blinker_exit(void)
 {
 	driver_remove_file(&blinker_driver, &driver_attr_blinker);
 	driver_unregister(&blinker_driver);
-	release_region(BLINKER_BASE, 1);
+	release_mem_region(BLINKER_BASE, BLINKER_SIZE);
+	iounmap(blink_mem);
 }
 
 module_init(blinker_init);
