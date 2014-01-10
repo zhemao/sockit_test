@@ -2,8 +2,11 @@
 
 I recently acquired one of the new [Arrow SoCKits](http://www.arrownac.com/solutions/sockit/),
 which are development boards for Altera's Cyclone V ARM processor / FPGA SoCs.
-This repository holds some code and hardware descriptions testing various
-features of the board.
+This repository contains a simple example of an FPGA hardware description
+that flashes the LEDs back and forth, as well as a C program that controls
+the speed of the flashing. A detailed explanation of the implementation and
+use of this system can be found in parts I-IV of my
+[Cyclone V Tutorial](http://zhehaomao.com/project/2014/01/02/fpga-series.html).
 
 ## Compilation Instructions
 
